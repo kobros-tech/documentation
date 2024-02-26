@@ -94,3 +94,25 @@ Operations Types`, and then clicking on a specific operations type.
 .. image:: reservation_methods/reservation-methods-operations-type-menu.png
    :align: center
    :alt: Operations Types highlighted from the Configurations submenu in the Inventory app.
+<<<<<<< HEAD
+||||||| parent of 219ebe89d (temp)
+
+.. seealso::
+   :doc:`reservation_methods/at_confirmation`
+
+.. toctree::
+   :titlesonly:
+
+   reservation_methods/at_confirmation
+=======
+
+.. seealso::
+   - :doc:`reservation_methods/at_confirmation`
+   - :doc:`reservation_methods/manually`
+
+.. toctree::
+   :titlesonly:
+
+   reservation_methods/at_confirmation
+   reservation_methods/manually
+>>>>>>> 219ebe89d (temp)
