@@ -84,3 +84,7 @@ Availability` field reads `Available` (in green text), and the numbers in the :g
    :alt: Delivery order for product included in sales order with at confirmation reservation.
 
 Once ready, click :guilabel:`Validate`.
+
+.. seealso::
+   - :doc:`Manual reservation <../reservation_methods/manually>`
+   - :doc:`Before scheduled date reservation <../reservation_methods/before_scheduled_date>`

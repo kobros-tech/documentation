@@ -136,3 +136,4 @@ Once ready, click :guilabel:`Validate`.
 
 .. seealso::
    - :doc:`At confirmation reservation <../reservation_methods/at_confirmation>`
+   - :doc:`Before scheduled date reservation <../reservation_methods/before_scheduled_date>`
