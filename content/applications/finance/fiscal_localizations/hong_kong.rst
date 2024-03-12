@@ -109,7 +109,7 @@ Under the **HR Settings** tab:
    between 1 and 5) or Cap 5% VC (max-out at 5%)
 #. :guilabel:`MPF Manulife Account`: Set account number if applicable. 
 
-
+new change
 2-Manage your contracts
 ----------------------
 Once you have created your employee, proceed to the :guilabel:`Contracts` smart button or by going 
