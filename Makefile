@@ -95,4 +95,4 @@ review:
 	if echo $$path | grep -q 'content/'; then path=`echo $$path | sed 's|content/||'`; fi; \
 	if [ -z "$$line_length" ]; then line_length=100; fi; \
 	export REVIEW=1; \
-	python tests/main.py --max-line-length=$$line_length $(SOURCE_DIR)/$$path
+	python3 tests/main.py --max-line-length=$$line_length $(SOURCE_DIR)/$$path
