@@ -420,271 +420,219 @@ Location
 Description
 ~~~~~~~~~~~
 
-Dropdowns are surprisingly complicated components. They need to provide many
-features such as:
+The Dropdown lets you show a menu with a list of items when a toggle is
+clicked on. They can be combined with DropdownItems to invoke callbacks
+and close the menu when items are selected.
+
+Dropdowns are surprisingly complicated components, the list of features they
+provide is as follow:
 
 - Toggle the item list on click
-- Direct siblings dropdowns: when one is open, toggle others on hover
 - Close on outside click
+- Invoke a callback when items are selected
 - Optionally close the item list when an item is selected
-- Call a function when the item is selected
-- Support sub dropdowns, up to any level
 - SIY: style it yourself
+- Direct siblings dropdowns: when one is open, toggle others on hover
+- Support sub dropdowns, up to any level
 - Configurable hotkey to open/close a dropdown or select a dropdown item
 - Keyboard navigation (arrows, tab, shift+tab, home, end, enter and escape)
 - Reposition itself whenever the page scrolls or is resized
 - Smartly chose the direction it should open (right-to-left direction is automatically handled).
 
-To solve these issues once and for all, the Odoo framework provides a set of two
-components: a `Dropdown` component (the actual dropdown), and `DropdownItem`,
-for each element in the item list.
-
-.. code-block:: xml
-
-  <Dropdown>
-    <t t-set-slot="toggler">
-      <!-- "toggler" slot content is rendered inside a button -->
-      Click me to toggle the dropdown menu !
-    </t>
-    <!-- "default" slot content is rendered inside a div -->
-    <DropdownItem onSelected="selectItem1">Menu Item 1</DropdownItem>
-    <DropdownItem onSelected="selectItem2">Menu Item 2</DropdownItem>
-  </Dropdown>
-
-Props
-~~~~~
-
-A `<Dropdown/>` component is simply a `<div class="dropdown"/>` having a
-`<button class="dropdown-toggle"/>` next to menu div
-(`<div class="dropdown-menu"/>`). The button is responsible for the menu
-being present in the DOM or not.
-
-
-.. list-table::
-   :widths: 20 20 60
-   :header-rows: 1
-
-   * - Dropdown
-     - Type
-     - Description
-   * - `startOpen`
-     - boolean
-     - initial dropdown open state (defaults to `false`)
-   * - `menuClass`
-     - string
-     - additional css class applied to the dropdown menu `<div class="dropdown-menu"/>`
-   * - `togglerClass`
-     - string
-     - additional css class applied to the toggler `<button class="dropdown-toggle"/>`
-   * - `hotkey`
-     - string
-     - hotkey to toggle the opening through keyboard
-   * - `tooltip`
-     - string
-     - add a tooltip on the toggler
-   * - `beforeOpen`
-     - function
-     - hook to execute logic just before opening. May be asynchronous.
-   * - `manualOnly`
-     - boolean
-     - if true, only toggle the dropdown when the button is clicked on (defaults to `false`)
-   * - `disabled`
-     - boolean
-     - disable (if true) the dropdown button (defaults to `false`)
-   * - `title`
-     - string
-     - title attribute content for the `<button class="dropdown-toggle"/>` (default: none)
-   * - `position`
-     - string
-     - defines the desired menu opening position. RTL direction is automatically applied. Should be a valid :ref:`usePosition <frontend/hooks/useposition>` hook position. (default: `bottom-start`)
-   * - `toggler`
-     - `"parent"` or `undefined`
-     - when set to `"parent"` the `<button class="dropdown-toggle"/>` is not
-       rendered (thus `toggler` slot is ignored) and the toggling feature is handled by the parent node (e.g. use
-       case: pivot cells). (default: `undefined`)
-
-
-A `<DropdownItem/>` is simply a span (`<span class="dropdown-item"/>`).
-When a `<DropdownItem/>` is selected, it calls its `onSelected` prop. If this prop is a method, make sure it is bound if the method need to use the `this` value.
-
-.. list-table::
-   :widths: 20 20 60
-   :header-rows: 1
-
-   * - DropdownItem
-     - Type
-     - Description
-   * - `onSelected`
-     - Function
-     - a function that will be called when the dropdown item is selected.
-   * - `parentClosingMode`
-     - `none` | `closest` | `all`
-     - when the item is selected, control which parent dropdown will get closed:
-       none, closest or all (default = `all`)
-   * - `hotkey`
-     - string
-     - optional hotkey to select the item
-   * - `href`
-     - string
-     - if provided the DropdownItem will become an `<a href="value" class="dropdown-item"/>` instead of a `<span class="dropdown-item"/>`. (default: not provided)
-   * - `title`
-     - string
-     - optional title attribute which will be passed to the root node of the DropdownItem. (default: not provided)
-   * - `dataset`
-     - Object
-     - optional object containing values that should be added to the root element's dataset. This can be used so that the element is easier to find programmatically, for example in tests or tours.
-
-Technical notes
-~~~~~~~~~~~~~~~
-
-The rendered DOM is structured like this:
-
-.. code-block:: html
-
-   <div class="dropdown">
-       <button class="dropdown-toggle">Click me !</button>
-       <!-- following <div/> will or won't appear in the DOM depending on the state controlled by the preceding button -->
-       <div class="dropdown-menu">
-           <span class="dropdown-item">Menu Item 1</span>
-           <span class="dropdown-item">Menu Item 2</span>
-       </div>
-   </div>
-
 To properly use a `<Dropdown/>` component, you need to populate two
 `OWL slots <https://github.com/odoo/owl/blob/master/doc/reference/slots.md>`_ :
 
-
-- `toggler` slot: it contains the *toggler* elements of your dropdown and is
-  rendered inside the dropdown `button` (unless the `toggler` prop is set to `parent`),
-- `default` slot: it contains the *elements* of the dropdown menu itself and is
-  rendered inside the `<div class="dropdown-menu"/>`. Although it is not mandatory, there is usually at least one
-  `DropdownItem` inside the `menu` slot.
-
-
-When several dropdowns share the same parent element in the DOM, then they are
-considered part of a group, and will notify each other about their state changes.
-This means that when one of these dropdowns is open, the others will automatically
-open themselves on mouse hover, without the need for a click.
-
-
-Example: Direct Siblings Dropdown
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-When one dropdown toggler is clicked (**File** , **Edit** or **About**), the
-others will open themselves on hover.
-
-.. code-block:: xml
-
-  <div>
-    <Dropdown>
-      <t t-set-slot="toggler">File</t>
-      <DropdownItem onSelected="() => this.onItemSelected('file-open')">Open</DropdownItem>
-      <DropdownItem onSelected="() => this.onItemSelected('file-new-document')">New Document</DropdownItem>
-      <DropdownItem onSelected="() => this.onItemSelected('file-new-spreadsheet')">New Spreadsheet</DropdownItem>
-    </Dropdown>
-    <Dropdown>
-      <t t-set-slot="toggler">Edit</t>
-      <DropdownItem onSelected="() => this.onItemSelected('edit-undo')">Undo</DropdownItem>
-      <DropdownItem onSelected="() => this.onItemSelected('edit-redo')">Redo</DropdownItem>
-      <DropdownItem onSelected="() => this.onItemSelected('edit-find')">Search</DropdownItem>
-    </Dropdown>
-    <Dropdown>
-      <t t-set-slot="toggler">About</t>
-      <DropdownItem onSelected="() => this.onItemSelected('about-help')">Help</DropdownItem>
-      <DropdownItem onSelected="() => this.onItemSelected('about-update')">Check update</DropdownItem>
-    </Dropdown>
-  </div>
-
-Example: Multi-level Dropdown (with `t-call`)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This example shows how one could make a `File` dropdown menu, with submenus for
-the `New` and `Save as...` sub elements.
-
-.. code-block:: xml
-
-  <t t-name="addon.Dropdown.File">
-    <Dropdown>
-      <t t-set-slot="toggler">File</t>
-      <DropdownItem onSelected="() => this.onItemSelected('file-open')">Open</DropdownItem>
-      <t t-call="addon.Dropdown.File.New"/>
-      <DropdownItem onSelected="() => this.onItemSelected('file-save')">Save</DropdownItem>
-      <t t-call="addon.Dropdown.File.Save.As"/>
-    </Dropdown>
-  </t>
-
-  <t t-name="addon.Dropdown.File.New">
-    <Dropdown>
-      <t t-set-slot="toggler">New</t>
-      <DropdownItem onSelected="() => this.onItemSelected('file-new-document')">Document</DropdownItem>
-      <DropdownItem onSelected="() => this.onItemSelected('file-new-spreadsheet')">Spreadsheet</DropdownItem>
-    </Dropdown>
-  </t>
-
-  <t t-name="addon.Dropdown.File.Save.As">
-    <Dropdown>
-      <t t-set-slot="toggler">Save as...</t>
-      <DropdownItem onSelected="() => this.onItemSelected('file-save-as-csv')">CSV</DropdownItem>
-      <DropdownItem onSelected="() => this.onItemSelected('file-save-as-pdf')">PDF</DropdownItem>
-    </Dropdown>
-  </t>
-
-Example: Multi-level Dropdown (nested)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- `default` slot: it contains the *toggle* elements of your dropdown. By default, click events will
+  be attached to this element to open and close the dropdown.
+- `content` slot: it contains the *elements* of the dropdown menu itself and is rendered inside a popover
+  menu (`<div class="o-dropdown--menu"/>`). Although it is not mandatory, you can put some `DropdownItem`
+  inside this slot, the dropdown will automatically close when these items are selected.
 
 .. code-block:: xml
 
   <Dropdown>
-    <t t-set-slot="toggler">File</t>
-    <DropdownItem onSelected="() => this.onItemSelected('file-open')">Open</DropdownItem>
-    <Dropdown>
-      <t t-set-slot="toggler">New</t>
-      <DropdownItem onSelected="() => this.onItemSelected('file-new-document')">Document</DropdownItem>
-      <DropdownItem onSelected="() => this.onItemSelected('file-new-spreadsheet')">Spreadsheet</DropdownItem>
-    </Dropdown>
-    <DropdownItem onSelected="() => this.onItemSelected('file-save')">Save</DropdownItem>
-    <Dropdown>
-      <t t-set-slot="toggler">Save as...</t>
-      <DropdownItem onSelected="() => this.onItemSelected('file-save-as-csv')">CSV</DropdownItem>
-      <DropdownItem onSelected="() => this.onItemSelected('file-save-as-pdf')">PDF</DropdownItem>
-    </Dropdown>
+    <!-- The content of the "default" slot is the component's toggle -->
+    <button class="my-btn" type="button">
+      Click me to toggle the dropdown menu!
+    </button>
+
+    <!-- The "content" slot is rendered inside the menu that pops up next to the toggle -->
+    <t t-set-slot="content">
+      <DropdownItem onSelected="selectItem1">Menu Item 1</DropdownItem>
+      <DropdownItem onSelected="selectItem2">Menu Item 2</DropdownItem>
+    </t>
   </Dropdown>
 
-Example: Recursive Multi-level Dropdown
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Dropdown Props
+~~~~~~~~~~~~~~
 
-In this example, we recursively call a template to display a tree-like structure.
+.. list-table::
+   :widths: 20 20 60
+   :header-rows: 1
+
+   * - Name
+     - Type
+     - Description
+   * - `menuClass`
+     - string
+     - Classname added to the dropdown's menu
+   * - `disabled`
+     - boolean
+     - Disables the dropdown if true (default: `false`)
+   * - `items`
+     - array
+     - A list of items to be displayed as DropdownItems inside the dropdown's menu
+   * - `position`
+     - string
+     - Defines the desired menu opening position. RTL direction is automatically applied. Should be a valid :ref:`usePosition <frontend/hooks/useposition>` hook position. (default: `bottom-start`)
+   * - `beforeOpen`
+     - function
+     - Callback to execute logic just before opening. May be asynchronous.
+   * - `onOpened`
+     - function
+     - Callback to execute logic just after opening.
+   * - `onStateChanged`
+     - function
+     - Callback to execute logic after opening or closing (gives a boolean as single argument that represents whether the dropdown is open or not).
+   * - `state`
+     - object
+     - Use this prop if you need to manually control when the dropdown opens or closes.
+   * - `manual`
+     - boolean
+     - When true, the Dropdown component will not add click event listeners to the toggler. This allows for more control as when to open the dropdown. (This should be used in tandem with the `state` prop)
+   * - `navigationOptions`
+     - boolean
+     - Allows overriding the navigation options of the dropdown, (see `web/core/navigation/navigation`).
+   * - `holdOnHover`
+     - boolean
+     - When true, the Dropdown's menu will not reposition while the mouse is hovering it, creating a better UX when the menu's content changes.
+   * - `menuRef`
+     - function
+     - Allows to get a ref of the dropdown's menu, (expects a function returned from `useChildRef`)
+
+DropdownItem Props
+~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 20 20 60
+   :header-rows: 1
+
+   * - Name
+     - Type
+     - Description
+   * - `class`
+     - string or object
+     - This value is added to the root span classname (supports both strings and Owl's classname object notation).
+   * - `onSelected`
+     - function
+     - A function that will be called when the dropdown item is selected.
+   * - `closingMode`
+     - `none` | `closest` | `all`
+     - When the item is selected, controls which parent dropdown should close:
+       `none`: the dropdown will not close, `closest`: The direct parent will close, `all`: Every nested parent dropdown will close (default: `all`)
+   * - `attrs`
+     - Object
+     - Optional object representing attributes that should be added to the root element. `<DropdownItem attrs="{ title: 'A tooltip', 'data-hotkey': 'shift+a' }">`. (If `href` is set, the element will automatically become an `a` element).
+
+.. example::
+
+   This example shows how one could make a nested File dropdown menu, with submenus for the New sub elements.
+
+   .. code-block:: xml
+
+    <Dropdown>
+      <button>File</button>
+      <t t-set-slot="content">
+        <DropdownItem onSelected="() => this.onItemSelected('file-save')">Save</DropdownItem>
+        <DropdownItem onSelected="() => this.onItemSelected('file-open')">Open</DropdownItem>
+
+        <Dropdown>
+          <button>New</button>
+          <t t-set-slot="content">
+            <DropdownItem onSelected="() => this.onItemSelected('file-new-document')">Document</DropdownItem>
+            <DropdownItem onSelected="() => this.onItemSelected('file-new-spreadsheet')">Spreadsheet</DropdownItem>
+          </t>
+        </Dropdown>
+      </t>
+    </Dropdown>
+
+   In the example bellow, we recursively call a template to display a tree-like structure.
+
+   .. code-block:: xml
+
+    <t t-name="addon.MainTemplate">
+      <div>
+        <t t-call="addon.RecursiveDropdown">
+          <t t-set="name" t-value="'Main Menu'" />
+          <t t-set="items" t-value="state.menuItems" />
+        </t>
+      </div>
+    </t>
+
+    <t t-name="addon.RecursiveDropdown">
+      <Dropdown>
+        <button t-esc="name"></button>
+        <t t-set-slot="content">
+          <t t-foreach="items" t-as="item" t-key="item.id">
+
+            <!-- If this item has no child: make it a <DropdownItem/> -->
+            <DropdownItem t-if="!item.childrenTree.length" onSelected="() => this.onItemSelected(item)" t-esc="item.name"/>
+
+            <!-- Else: recursively call the current dropdown template. -->
+            <t t-else="" t-call="addon.RecursiveDropdown">
+              <t t-set="name" t-value="item.name" />
+              <t t-set="items" t-value="item.childrenTree" />
+            </t>
+          </t>
+        </t>
+      </Dropdown>
+    </t>
+
+.. important::
+   When writing custom css for you components, do not forget that the menu elements are not next to the toggle
+   but inside the overlay container, at the bottom of the document. Thus, **use the `menuClass` prop to more
+   easily write your selectors.** (This DOM magic let us avoid lots of z-index issues)
+
+Controlled Dropdown
+~~~~~~~~~~~~~~~~~~~
+
+If you want to programatically
+
+DropdownGroup
+~~~~~~~~~~~~~
+
+**Location:** `@web/core/dropdown/dropdown_group`
+
+You can use the DropdownGroup component to make Dropdowns share a common group, this means that when
+one of these Dropdown is open, the others will automatically open themselves on mouse hover, without
+the need for a click.
+
+To do this, either surround all the Dropdowns with a single DropdownGroup or surround them with
+DropdownGroups with the same `group` key. For example, all dropdown in the snippet bellow will share
+the same group:
 
 .. code-block:: xml
 
-  <t t-name="addon.MainTemplate">
-    <div>
-      <t t-call="addon.RecursiveDropdown">
-        <t t-set="name" t-value="'Main Menu'" />
-        <t t-set="items" t-value="state.menuItems" />
-      </t>
-    </div>
-  </t>
+  <DropdownGroup>
+    <Dropdown>...</Dropdown>
+    <Dropdown>...</Dropdown>
+    <Dropdown>...</Dropdown>
+  </DropdownGroup>
 
-  <t t-name="addon.RecursiveDropdown">
-    <Dropdown>
-      <t t-set-slot="toggler"><t t-esc="name"/></t>
-        <t t-foreach="items" t-as="item" t-key="item.id">
+Whereas in the following snippet, only the first, second and fourth dropdown share the same group:
 
-          <!-- If this item has no child: make it a <DropdownItem/> -->
-          <t t-if="!item.childrenTree.length">
-            <DropdownItem onSelected="() => this.onItemSelected(item)" t-esc="item.name"/>
-          </t>
-          <!-- Else: recursively call the current dropdown template. -->
-          <t t-else="" t-call="addon.RecursiveDropdown">
-            <t t-set="name" t-value="item.name" />
-            <t t-set="items" t-value="item.childrenTree" />
-          </t>
+.. code-block:: xml
 
-        </t>
-      </t>
-    </Dropdown>
-  </t>
+  <DropdownGroup group="'my-group'">
+    <Dropdown>...</Dropdown>
+    <Dropdown>...</Dropdown>
+  </DropdownGroup>
+  <DropdownGroup group="'my-other-group'">
+    <Dropdown>...</Dropdown>
+  </DropdownGroup>
+  <DropdownGroup group="'my-group'">
+    <Dropdown>...</Dropdown>
+  </DropdownGroup>
 
 .. _frontend/owl/notebook:
 
