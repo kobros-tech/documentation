@@ -301,7 +301,8 @@ The ADW computation is as follows:
 
 You may generate the following payslips (ensure payslip status is **Done**) to validate the outcome:
 
-. grid-table::
+.. grid-table::
+
 +----------------+------+-----------+------------+-----------+----------------+---------------+
 |     Period     | Days |    Wage   | Commission |   Total   |       ADW      |  Leave Value  |
 +----------------+------+-----------+------------+-----------+----------------+---------------+
