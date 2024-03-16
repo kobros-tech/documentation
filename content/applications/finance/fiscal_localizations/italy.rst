@@ -95,20 +95,26 @@ justify the exemption operated on an invoice line.
 Reverse charge
 ==============
 
-Italian businesses selling goods and services are sometimes required *not* to charge the customer
-for the VAT. The customers pay the VAT *themselves* to the :abbr:`AdE (Agenzia delle Entrate)`
-instead. This mechanism is called **reverse charge**; there are different types:
+The **reverse charge** mechanism is a VAT rule that shifts the liability to pay VAT from the
+supplier to the customer. The customers pay the VAT *themselves* to the :abbr:`AdE (Agenzia delle
+Entrate)` instead. There are different types:
 
-- :guilabel:`Internal Reverse Charge` (for domestic sales) is when the VAT is paid by the seller.
-- :guilabel:`External Reverse Charge` (for intra-EU sales). VAT is a type of tax that is applied to
-  the country of the buyer. The seller has no means to collect and pay VAT in the other country, so
-  the buyer is responsible for doing it in a B2B setting.
+- | :guilabel:`Internal Reverse Charge` (for domestic sales)
+  | The VAT responsability is shifted to the buyer for certain categories of products and services
+    where the risk of tax evasion is higher.
+- | :guilabel:`External Reverse Charge` (for intra-EU sales)
+  | VAT is due in the country of the delivery or in the country where the service is performed.
+    When the buyer is itself an Italian business, then the EU offers a mechanism that allows the
+    seller to transfer his responsibility to the buyer.
 
 Invoices
 --------
 
-**Reverse-charged** customer invoices are **tax-exempt** (0%) for the seller. To use it on an invoice,
-select the corresponding tax on each invoice line.
+**Reverse-charged** customer invoices show no VAT amount, but the :abbr:`AdE (Agenzia delle
+Entrate)` requires the seller to specify the :guilabel:`Tax Exemption` reason and the :guilabel:`Law
+Reference` that enable the reverse-charge mechanism. Odoo provides a set of special 0% taxes that
+can be assigned to each reverse-charged invoice lines, representing the most
+commonly used configurations.
 
 Vendor bills
 ------------
