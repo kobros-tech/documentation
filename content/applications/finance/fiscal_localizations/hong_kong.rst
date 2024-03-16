@@ -4,14 +4,14 @@ Hong Kong
 
 Configuration
 =============
-Please install the 🇭🇰 Hong Kong fiscal localization package to get all the latest features of HK 
+Please install the 🇭🇰 Hong Kong fiscal localization module to get the latest features of HK 
 Localization. 
 
 .. image:: hong_kong/l10n-hk-modules.png
    :alt: Hong Kong localization modules
 
 .. note::
-   If you wish to use the HK Payroll features, please install the module separately under the :ref:`HK Payroll <hong_kong/payroll>`.
+   If you wish to use the HK Payroll features, please install the module under the :ref:`HK Payroll <hong_kong/payroll>`.
 
 Add FPS QR codes to invoices
 ============================
@@ -70,7 +70,7 @@ generate the FPS QR code.
 HK Payroll
 ==========
 .. important::
-   Please ensure the 🇭🇰 HK Payroll module in installed before you begin. 
+   Please ensure the 🇭🇰 HK Payroll module is installed before you begin. 
 
 .. image:: hong_kong/hk-payroll-module.png
    :alt: HK Payroll module
@@ -81,10 +81,10 @@ Create your employees
 Go to the **Employees** app and click :guilabel:`Create`.
 
 Here are a list of supplementary fields to input before starting with HK Payroll:
+
 Under the **Work Information** tab:
 
-- :guilabel:`Working Hours`: You need to select HK Standard 40 hours/week as this working schedule
-   includes weekend (used for 713 computation). 
+- :guilabel:`Working Hours`: You need to select HK Standard 40 hours/week.
 
 Under the **Private Information** tab:
 
@@ -94,7 +94,7 @@ Under the **Private Information** tab:
 - :guilabel:`Private Address`
 - :guilabel:`Bank Account Number`: Employee's bank account number
 - :guilabel:`Current Rental`: Employee's rental records (if rental allowance is applicable)
-- :guilabel:`Autopay Type`: E.g. BBAN, SVID, EMAL, etc
+- :guilabel:`Autopay Type`: BBAN, SVID, EMAL, etc
 - :guilabel:`Autopay Reference`
 
 .. note::
@@ -105,36 +105,32 @@ Under the **Private Information** tab:
 
 Under the **HR Settings** tab:
 
-- :guilabel:`Volunteer Contribution Option`: You may select either  
-   :abbr:`MC (Mandatory Contribution)`, Fixed % :abbr:`VC (Voluntary Contribution)` (set a % 
-   between 1 and 5) or Cap 5% VC (max-out at 5%)
+- :guilabel:`Volunteer Contribution Option`: You may select either :abbr:`MC (Mandatory Contribution)`, Fixed % :abbr:`VC (Voluntary Contribution)` or Cap 5% VC (max-out at 5%)
 - :guilabel:`MPF Manulife Account`: Account number if applicable. 
 
 Manage your contracts
 ---------------------
-Once you have created your employee, proceed to the :guilabel:`Contracts` smart button or by going 
-to :menuselection:`Employees --> Employees --> Contracts`.
+Once you have created your employee, proceed to the :guilabel:`Contracts` smart button on the 
+employee record or by going to :menuselection:`Employees --> Employees --> Contracts`.
 
 .. note::
    Only **one** contract can be active simultaneously per employee, but an employee can be assigned
    consecutive contracts during their employment.
 
-Here are several key contractual information to take note during setup:
+Here are several key information to take note during contract setup:
 
 - :guilabel:`Working Schedule`: Set as HK Standard 40 hours/week (from employee record)
 - :guilabel:`Salary Structue Type`: Set as CAP57: Hong Kong Employee. 
-- :guilabel:`Work Entry Source`: You may choose between **Working Schedule**, **Attendances** or **Planning**. This field determines how the **working hours** and **days** are accounted for in the payslip.
+- :guilabel:`Work Entry Source`: You may choose between **Working Schedule**, **Attendances** or **Planning**. This field determines how the work entries are accounted for in the payslip.
    
-   - :guilabel:`Working Schedule`: The work entries are generated automatically based on the 
-      employee's Working Schedule.
-   - :guilabel:`Attendances`: The work entries will be generated based on the check-in/-out period 
-      logged on the Attendances app. 
+   - :guilabel:`Working Schedule`: The work entries are generated automatically based on the employee's Working Schedule.
+   - :guilabel:`Attendances`: The work entries will be generated based on the check-in/-out period logged on the Attendances app. 
    - :guilabel:`Planning`: The work entries are generated from planning shifts only.
 
 Under the **Salary Information** tab: 
 
-- :guilabel:`Wage Type`: You may select **Fixed Wage** for Full-time or Part-time employees or **Hourly Wage** for employees who are paid hourly (used with Attendances work entry source). 
-- :guilabel:`Wage`: Monthly or Hourly depending on the **Wage Type**. 
+- :guilabel:`Wage Type`: You may select **Fixed Wage** for Full-time or Part-time employees or **Hourly Wage** for employees who are paid hourly. 
+- :guilabel:`Wage`: Monthly or Hourly depending on the company.
 - :guilabel:`Internet Subscription`: This is an **optional** field to provide additional internet allowance on top of the current salary package.
 
   .. important::
@@ -161,13 +157,15 @@ Odoo provides **four** different salary structures under CAP57 Regulation:
 #. :guilabel:`Severance Payment`: Applicable to employees with more than 2 years of service upon 
    contract termination.
 
-Before running the payslips, you can adjust the accounts used in relation to the salary rule by
-navigating to :menuselection:`Payroll --> Configurations --> Rules`. 
+Before running the payslips, you may adjust the accounts used in the salary rule by navigating to
+:menuselection:`Payroll --> Configurations --> Rules`. 
 
 .. image:: hong_kong/hk-salary-rules.png
    :alt: Hong Kong Salary Rules
 
 Odoo can create pay runs in **two** ways: via **individual** or via **batch** payslips.
+
+.. _hong_kong/batch_payslips:
 
 Batch payslips
 ~~~~~~~~~~~~~~
@@ -178,8 +176,8 @@ multiple employees at once.
 #. Click on :guilabel:`New`.
 #. Provide a Batch Name (e.g, `2024 – Jan`) and Period (e.g. 01/01/2024 - 01/31/2024)
 #. Click on :guilabel:`Generate Payslips`.
-#. You can choose which Salary Structure you wish to generate the payslips for this batch. The 
-   department filter allows you to designate the batch for a specific group of employees.
+#. You can choose which **Salary Structure** you wish to use for this batch. The department filter 
+   allows you to designate the batch for a specific group of employees.
 #. Click on :guilabel:`Generate`.
 #. Now you can see the :guilabel:`Payslips` smart button created automatically.
 
@@ -187,8 +185,7 @@ multiple employees at once.
    :alt: Hong Kong Batch Payslips
 
 Once you are satisfied with the Payslips, click :guilabel:`Create Draft entry` to generate a draft 
-accounting journal entry found in the :guilabel:`Other Info` tab of the payslip. 
-Note for batches, this accounting entry will sum up balances from all payslips.
+journal entry found in the :guilabel:`Other Info` tab of each payslips. 
 
 Individual payslips
 ~~~~~~~~~~~~~~~~~~~
@@ -204,25 +201,25 @@ of Notice, Long Service Payment, Severance Payment).
    that are applicable.
 #. You may also choose to add additional payslip items (e.g. Commissions, Deductions) under the 
    **Other Inputs** section.
-#. Click on :guilabel:`Compute Sheet` button to generate payslip lines. This button will refresh the 
-   :guilabel:`Salary Computation` tab. 
+#. Click on :guilabel:`Compute Sheet` button to generate the payslip lines. This button will update
+   the :guilabel:`Salary Computation` tab. 
 
 .. image:: hong_kong/hk-individual-payslip.png
    :alt: Hong Kong Individual Payslip
 
 .. note::
    If you have amended the work entry for an employee, you will need to go to the **gear icon (⚙)**
-   and click on **Recompute Whole Sheet** to refresh the payslip's **Worked Day** section. 
+   and click on **Recompute Whole Sheet** to refresh the payslip's **Worked Day & Inputs** section. 
 
 The :guilabel:`Salary Computation` tab will show the detailed breakdown of the computation based on 
-the salary rules configured for the structure type. 
+the salary rules configured for each structure type. 
 
 .. image:: hong_kong/hk-salary-computation.png
    :alt: Hong Kong Salary computation
 
 #. **Rent Allowance**: Amount derived from the employee's active rental record.
 #. **Basic salary**: Amount from which tax-deductible lines can be subtracted minus rental 
-   allowance (if any).
+   allowance. 
 #. **713 Gross**: Amount after considering allowances/deductions.
 #. **MPF Gross**
 #. **Employee Mandatory Contribution**: Employee MPF Contribution
@@ -230,15 +227,15 @@ the salary rules configured for the structure type.
 #. **Gross**
 #. **Net Salary**: Final amount to be paid to the employee
 #. **Monthly End Autopay**
-#. **Other Lines**: depends on whether there are any salary attachments to the employee. 
+#. **Other Lines**: Depends on whether there are any salary attachments to the employee. 
 
 .. note::
-   Do note there will be no MPF computation line for the first month payslip as the **employee** 
-   contribution starts on second month.
-   The **employer** contribution for the second month will include the back-pay of the first month. 
+   Do note there will be no MPF contribution for the first month. Both **employee** and **employer**
+   contribution starts on second month and the **employer** contribution for the second month will 
+   include back-pay of the first month. 
 
 Once you are satisfied with the Payslips, click :guilabel:`Create Draft entry` to generate a draft 
-accounting journal entry found in the :guilabel:`Other Info` tab of the payslip. 
+journal entry found in the :guilabel:`Other Info` tab of the payslip. 
 
 Paying your employees
 ---------------------
@@ -250,15 +247,12 @@ The user can choose between **two** different **payment methods**.
   :doc:`paying vendor bills <../accounting/payments>`: select the desired bank journal and payment
   method, then later reconcile the payment with the corresponding bank statement.
 
-- For batch payments, you can click on **Create HSBC Autopay Report** and fill in following: 
-  This will create an **.apc** file format which you can upload to HSCB portal. 
+- For batch payments, once you have confirmed all draft journal entries from the batch, you may 
+  click :guilabel:`Mark as Paid` to post the payment journal entry. 
 
-.. image:: hong_kong/hk-generate-autopay.png
-   :alt: Hong Kong HSBC Autopay Wizard
-
-By Attendances
---------------
-You may handle employees who are based on hourly-wage contract using **Payroll**.
+Attendances & Hourly Wage
+-------------------------
+You may setup the contract as follows for employees who are based on hourly-wage contract:
 
 .. note::
    Make sure the employee contract is using **Attendance** as the Work Entry Source and the Wage 
@@ -268,7 +262,7 @@ You may handle employees who are based on hourly-wage contract using **Payroll**
 #. The employee can check-in/out via the kiosk mode. 
 #. In the **Payroll** app, you can review the attendance work entries generated from 
    :menuselection:`Payroll --> Work Entries`. 
-#. Next, you can generate the payslip (similar to :ref:`HK Payroll <hong_kong/running_payslips>`) and process payment.
+#. Next, you can generate the :ref:`payslips <hong_kong/running_payslips>` and process payment.
 
 .. image:: hong_kong/hk-attendance-work-entry.png
    :alt: Hong Kong Attendance Work Entry
@@ -276,13 +270,13 @@ You may handle employees who are based on hourly-wage contract using **Payroll**
 .. image:: hong_kong/hk-attendance-payslip.png
    :alt: Hong Kong Attendance Payslip
 
-Taking Time-Off
----------------
+Time-Off with Payroll
+---------------------
 The work entry types and time-off types are fully integrated between the **Time-off** and 
 **Payroll** app. There are several time-off types and work entry types specific to HK which are 
 installed automatically along with the **HK-Payroll** module. 
 
-There are two checkboxes to take note when setting up the work entry type:
+There are two checkboxes to be considered when setting up the work entry type:
 
 - :guilabel:`Use 713`: This leave type to be included as part of 713 computation.
 - :guilabel:`Non-full pay`: 80% of the :abbr:`ADW (Average Daily Wage)`. 
@@ -290,14 +284,10 @@ There are two checkboxes to take note when setting up the work entry type:
 .. image:: hong_kong/hk-work-entry-type.png
    :alt: Hong Kong Work Entry Type
 
-Understanding 713
------------------
+Understanding 713 Ordinance
+---------------------------
 Our HK Payroll module is compliant with 713 Ordinance which relates to the 
 :abbr:`ADW (Average Daily Wage)` computation to ensure fair compensation for employees. 
-
-.. seealso::
-   - `HK 713 Ordinance <https://www.labour.gov.hk/eng/public/wcp/ConciseGuide/Appendix1.pdf>`_
-   - `HK 418 Ordinance <https://www.workstem.com/hk/en/blog/418-regulations/>`_
 
 The ADW computation is as follows:
 
@@ -305,46 +295,48 @@ The ADW computation is as follows:
    :alt: Hong Kong ADW Formula
 
 .. note::
-   For 418 compliance, there is no automatation to allocate the :abbr:`SH (Statutory Holiday)` 
+   For 418 compliance, there is no automatated allocation of the **Statutory Holiday**
    entitlement to the employees. As soon as your employees meets the 418 requirements, you may 
    manually allocate the leaves via the **Time-Off** app. 
 
-You may generate the following payslips (make sure payslip status is **Done**) and test them out:
+You may generate the following payslips (ensure payslip status is **Done**) to validate the outcome:
 
-. list-table::
-   :header-rows: 1
-   :stub-columns: 7
-+----------------+------+-----------+------------+-----------+---------------+---------------+
-|     Period     | Days |    Wage   | Commission |   Total   |      ADW      |  Leave Value  |
-+----------------+------+-----------+------------+-----------+---------------+---------------+
-|       Jan      |  31  |   $20200  |     $0     |   $20200  |    $651.61    |       -       |
-|                |      |           |            |           |   (20200/31)  |               |
-+----------------+------+-----------+------------+-----------+---------------+---------------+
-|       Feb      |  28  |   $20200  |    $5000   |   $25200  |    $769.49    |       -       |
-|                |      |           |            |           |   (45400/59)  |               |
-+----------------+------+-----------+------------+-----------+---------------+---------------+
-|       Mar      |  31  | $20324.33 |     $0     | $20324.33 |    $730.27    |    $769.49    |
-|   (1 day AL)   |      |           |            |           | (65724.33/90) |               |
-+----------------+------+-----------+------------+-----------+---------------+---------------+
-|       Apr      |  30  | $20117.56 |     $0     |     -     |       -       |    $584.22    |
-| (1 day 80% SL) |      |           |            |           |               | ($730.27*0.8) |
-+----------------+------+-----------+------------+-----------+---------------+---------------+
+. grid-table::
++----------------+------+-----------+------------+-----------+----------------+---------------+
+|     Period     | Days |    Wage   | Commission |   Total   |       ADW      |  Leave Value  |
++----------------+------+-----------+------------+-----------+----------------+---------------+
+|       Jan      |  31  |   $20200  |     $0     |   $20200  |    $651.61     |      N/A      |
+|                |      |           |            |           |   ($20200/31)  |               |
++----------------+------+-----------+------------+-----------+----------------+---------------+
+|       Feb      |  28  |   $20200  |    $5000   |   $25200  |    $769.49     |      N/A      |
+|                |      |           |            |           |   ($45400/59)  |               |
++----------------+------+-----------+------------+-----------+----------------+---------------+
+|       Mar      |  31  | $20324.33 |     $0     | $20324.33 |    $730.27     |    $769.49    |
+|   (1 day AL)   |      |           |            |           | ($65724.33/90) |               |
++----------------+------+-----------+------------+-----------+----------------+---------------+
+|       Apr      |  30  | $20117.56 |     $0     |     -     |        -       |    $584.22    |
+| (1 day 80% SL) |      |           |            |           |                | ($730.27*0.8) |
++----------------+------+-----------+------------+-----------+----------------+---------------+
 
-Here is a breakdown on each month's payslip:
+Here is an example demonstrating the 713 computation logic:
 
 - :guilabel:`Jan`: Generate a payslip with a monthly wage of $20200. The **ADW** is always computed on a cumulative basis of the trailing 12-months. 
 - :guilabel:`Feb`: Generate a similar payslip but add an **Other Input Type** for the Commission.
-- :guilabel:`Mar`: We will apply for 1-day full-paid leave in March.
+- :guilabel:`Mar`: We will apply for **one** full-paid annual leave in March. The salary compensation for the leave taken is based on ADW thus far.
 
 .. image:: hong_kong/hk-march-713.png
    :alt: Hong Kong March 713
 
-- :guilabel:`Apr`: We will apply for a 1-day non-full pay leave in April. 
+- :guilabel:`Apr`: We will apply for a 1-day non-full pay leave in April. Since this is a non-full pay leave, the ADW is computed accordingly.
 .. image:: hong_kong/hk-apr-713.png
    :alt: Hong Kong April 713
 
 .. note::
-   The value of ADW is computed in the backend and will not be visible to the user. 
+   The value of ADW is computed in the backend and not be visible to the user. 
+
+.. seealso::
+   - `HK 713 Ordinance <https://www.labour.gov.hk/eng/public/wcp/ConciseGuide/Appendix1.pdf>`_
+   - `HK 418 Ordinance <https://www.workstem.com/hk/en/blog/418-regulations/>`_
 
 Generate your reports
 ---------------------
@@ -393,8 +385,19 @@ Go to :menuselection:`Payroll --> Reporting --> Manulife MPF Sheet`
    :alt: Hong Kong Manulife Sheet
 
 .. note::
-   We will not be developing any further reports for other MPF trustee as there will soon be an 
+   We will not be developing further reports for other MPF trustee as there will be an 
    e-MPF platform setup by the local government. 
 
 .. seealso::
    - `eMPF <https://www.mpfa.org.hk/en/empf/overview>`_
+
+HSBC Autopay Report
+~~~~~~~~~~~~~~~~~~~
+
+If you use HSBC Autopay as your payment method, you can click on **Create HSBC Autopay Report** and 
+fill in the mandatory fields: 
+
+.. image:: hong_kong/hk-generate-autopay.png
+   :alt: Hong Kong HSBC Autopay Wizard
+
+This will create an **.apc** file format which you can upload to HSCB portal for processing.
