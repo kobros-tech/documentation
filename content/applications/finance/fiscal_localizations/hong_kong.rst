@@ -4,12 +4,14 @@ Hong Kong
 
 Configuration
 =============
-Install the 🇭🇰 Hong Kong fiscal localization package to install all the features of HK Localization. 
+Please install the 🇭🇰 Hong Kong fiscal localization package to get all the latest features of HK 
+Localization. 
+
 .. image:: hong_kong/l10n-hk-modules.png
    :alt: Hong Kong localization modules
 
 .. note::
-   If you wish to use the HK Payroll features, please remember to install the HK - Payroll 
+   If you wish to use the HK Payroll features, please install the HK - Payroll 
    module separately. More information can be found under the :ref:`HK Payroll <hong_kong/payroll>`.
 
 Add FPS QR codes to invoices
@@ -78,18 +80,20 @@ HK Payroll
    - `HK 713 Ordinance <https://www.labour.gov.hk/eng/public/wcp/ConciseGuide/Appendix1.pdf>`_
    - `HK 418 Ordinance <https://www.workstem.com/hk/en/blog/418-regulations/>`_
 
-1-Create your employees
------------------------
+Create your employees
+---------------------
 
 Go to the **Employees** app and click :guilabel:`Create`.
 
 Here are a list of supplementary fields to input before starting with HK Payroll:
 
 Under the **Work Information** tab:
+
 #. :guilabel:`Working Hours`: You need to select HK Standard 40 hours/week as this working schedule
    includes weekend (used for 713 computation). 
 
 Under the **Private Information** tab:
+
 #. :guilabel:`Surname, Given Name, Name in Chinese`
 #. :guilabel:`Identification No`
 #. :guilabel:`Gender`
@@ -101,17 +105,19 @@ Under the **Private Information** tab:
 
 .. note::
    For the **Bank Account Number**, remember to set the **Send Money** field to **Trusted**.
+
+.. note::
    For the **Current Rental**, remember to set the Current Rental's **status** to **Running**.
 
 Under the **HR Settings** tab:
+
 #. :guilabel:`Volunteer Contribution Option`: You may select either 
    :abbr:`MC (Mandatory Contribution)`, Fixed % :abbr:`VC (Voluntary Contribution)` (set a % 
    between 1 and 5) or Cap 5% VC (max-out at 5%)
 #. :guilabel:`MPF Manulife Account`: Set account number if applicable. 
 
-new change
-2-Manage your contracts
-----------------------
+Manage your contracts
+---------------------
 Once you have created your employee, proceed to the :guilabel:`Contracts` smart button or by going 
 to :menuselection:`Employees --> Employees --> Contracts`.
 
@@ -123,9 +129,9 @@ Here are several key contractual information to take note during setup:
 
 - :guilabel:`Working Schedule`: Set as HK Standard 40 hours/week (from employee record)
 - :guilabel:`Salary Structue Type`: Set as CAP57: Hong Kong Employee. 
-- :guilabel:`Work Entry Source`: You may choose between **Working Schedule**, **Attendances** or 
-**Planning**. This field determines how the **working hours** and **days** are accounted for in 
-the payslip.
+- :guilabel:`Work Entry Source`: You may choose between **Working Schedule**, **Attendances** or **Planning**. 
+   This field determines how the **working hours** and **days** are accounted for in 
+   the payslip.
    - :guilabel:`Working Schedule`: The work entries are generated automatically based on the 
       employee's Working Schedule.
    - :guilabel:`Attendances`: The work entries will be generated based on the check-in/-out period 
@@ -133,6 +139,7 @@ the payslip.
    - :guilabel:`Planning`: The work entries are generated from planning shifts only.
 
 Under the **Salary Information** tab: 
+
 - :guilabel:`Wage Type`: You may select **Fixed Wage** for Full-time or Part-time employees or 
 **Hourly Wage** for employees who are paid hourly (used with Attendances work entry source). 
 - :guilabel:`Wage`: Monthly or Hourly depending on the **Wage Type**. 
@@ -147,12 +154,13 @@ Once all information has been setup, remember to set the contract status to **Ru
 .. image:: hong_kong/hk-contract.png
    :alt: Hong Kong employment contract
 
-3-Running your payslips
------------------------
+Running your payslips
+---------------------
 Once the employee and contracts are setup, you can proceed with the creation of the payslip in the 
 **Payroll** app. 
 
 Odoo provides **four** different salary structures under CAP57 Regulation:
+
 #. :guilabel:`Employees Monthly Pay`: To process the monthly employee salary.
 #. :guilabel:`Payment in Lieu of Notice`: To process final payment upon contract termination.
 #. :guilabel:`Long Service Payment`: Applicable to employees with more than 5 years of service upon 
@@ -168,8 +176,8 @@ navigating to :menuselection:`Payroll --> Configurations --> Rules`.
 
 Odoo can create pay runs in **two** ways: via **individual** or via **batch** payslips.
 
-3a-Batch payslips
-~~~~~~~~~~~~~~~~~
+Batch payslips
+~~~~~~~~~~~~~~
 Go to :menuselection:`Payroll --> Payslips --> Batches`
 This method of payslip generation is used for recurring payments as you can manage the payslip for 
 multiple employees at once. 
@@ -189,8 +197,8 @@ Once you are satisfied with the Payslips, click :guilabel:`Create Draft entry` t
 accounting journal entry found in the :guilabel:`Other Info` tab of the payslip. 
 Note for batches, this accounting entry will sum up balances from all payslips.
 
-3b-Individual payslips
-~~~~~~~~~~~~~~~~~~~~~~
+Individual payslips
+~~~~~~~~~~~~~~~~~~~
 Go to :menuselection:`Payroll --> Payslips --> All Payslips`
 This method of payslip generation is commonly used to handle one-off payments (e.g. Payment in Lieu
  of Notice, Long Service Payment, Severance Payment).
@@ -239,8 +247,8 @@ the salary rules configured for the structure type.
 Once you are satisfied with the Payslips, click :guilabel:`Create Draft entry` to generate a draft 
 accounting journal entry found in the :guilabel:`Other Info` tab of the payslip. 
 
-4-Paying your employees
------------------------
+Paying your employees
+---------------------
 Once the draft journal entries have been posted, the company can now pay the employees.
 The user can choose between **two** different **payment methods**. 
 
@@ -249,15 +257,14 @@ The user can choose between **two** different **payment methods**.
   :doc:`paying vendor bills <../accounting/payments>`: select the desired bank journal and payment
   method, then later reconcile the payment with the corresponding bank statement.
 
-- For batch payments, you can click on **Create HSBC Autopay Report** and fill in the relevant 
-requirements for HSBC autopay and confirm. This will create an **.apc** file format which you can
-upload to HSCB portal. 
+- For batch payments, you can click on **Create HSBC Autopay Report** and fill in following: 
+  This will create an **.apc** file format which you can upload to HSCB portal. 
 
 .. image:: hong_kong/hk-generate-autopay.png
    :alt: Hong Kong HSBC Autopay Wizard
 
-5-By Attendances
-~~~~~~~~~~~~~~~~
+By Attendances
+~~~~~~~~~~~~~~
 In this section, we will show you how to handle employees who are based on hourly-wage contract.
 
 .. note::
@@ -276,21 +283,22 @@ In this section, we will show you how to handle employees who are based on hourl
 .. image:: hong_kong/hk-attendance-payslip.png
    :alt: Hong Kong Attendance Payslip
 
-6- Taking Time-Off
-~~~~~~~~~~~~~~~~~~
+Taking Time-Off
+~~~~~~~~~~~~~~~
 The work entry types and time-off types are fully integrated between the **Time-off** and 
 **Payroll** app. There are several time-off types and work entry types specific to HK which are 
 installed automatically along with the **HK-Payroll** module. 
 
 There are two checkboxes to take note when setting up the work entry type:
+
 - :guilabel:`Use 713`: This leave type to be included as part of 713 computation.
 - :guilabel:`Non-full pay`: 80% of the :abbr:`ADW (Average Daily Wage)`. 
 
 .. image:: hong_kong/hk-work-entry-type.png
    :alt: Hong Kong Work Entry Type
 
-7-Understanding 713
-~~~~~~~~~~~~~~~~~~~
+Understanding 713
+~~~~~~~~~~~~~~~~~
 Our HK Payroll module is compliant with 713 Ordinance which relates to the 
 :abbr:`ADW (Average Daily Wage)` computation to ensure fair compensation for employees. 
 
@@ -304,6 +312,11 @@ The ADW computation is as follows:
    manually allocate the leaves via the **Time-Off** app. 
 
 You may generate the following payslips (make sure payslip status is **Done**) and test them out:
+
+. list-table::
+   :header-rows: 1
+   :stub-columns: 7
+
 +----------------+------+-----------+------------+-----------+---------------+---------------+
 |     Period     | Days |    Wage   | Commission |   Total   |      ADW      |  Leave Value  |
 +----------------+------+-----------+------------+-----------+---------------+---------------+
@@ -321,10 +334,12 @@ You may generate the following payslips (make sure payslip status is **Done**) a
 +----------------+------+-----------+------------+-----------+---------------+---------------+
 
 Here is a breakdown on each month's payslip:
+
 - :guilabel:`Jan`: Generate a payslip with a monthly wage of $20200. The **ADW** is always computed 
    on a cumulative basis of the trailing 12-months. 
 - :guilabel:`Feb`: Generate a similar payslip but add an **Other Input Type** for the Commission.
 - :guilabel:`Mar`: We will apply for 1-day full-paid leave in March.
+
 .. image:: hong_kong/hk-march-713.png
    :alt: Hong Kong March 713
 
@@ -335,17 +350,18 @@ Here is a breakdown on each month's payslip:
 .. note::
    The value of ADW is computed in the backend and will not be visible to the user. 
 
-8-Generate your reports
------------------------
+Generate your reports
+---------------------
 Before generating the below reports, remember to setup the following in 
 :menuselection:`Settings --> Payroll --> Accounting/HK Localization`. 
 
 .. image:: hong_kong/hk-report-setup.png
    :alt: Hong Kong Payroll Settings
 
-8a-IRD Report
-~~~~~~~~~~~~~
+IRD Report
+~~~~~~~~~~
 There are a total of **four** IRD reports available:
+
 - :guilabel:`IR56B`: Employer's Return of Remuneration and Pensions
 - :guilabel:`IR56E`: Notification of Commencement of Employment
 - :guilabel:`IR56F`: Notification of Ceasation of Employment (remaining in HK)
@@ -366,10 +382,11 @@ Go to :menuselection:`Payroll --> Reporting --> IR56B/E/F/G`
    You can manually trigger the scheduled action called **Payroll: Generate pdfs**.
    It is set by default to run the PDF generation monthly. 
 
-8b-Manulife MPF Sheet
-~~~~~~~~~~~~~~~~~~~~~
+Manulife MPF Sheet
+~~~~~~~~~~~~~~~~~~
 
 Go to :menuselection:`Payroll --> Reporting --> Manulife MPF Sheet`
+
 #. Click on :guilabel:`New`.
 #. Select the relevant Year, Month and Sequence No. 
 #. Click on :guilabel:`Create XLSX`.
