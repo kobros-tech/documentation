@@ -11,8 +11,7 @@ Localization.
    :alt: Hong Kong localization modules
 
 .. note::
-   If you wish to use the HK Payroll features, please install the HK - Payroll 
-   module separately. More information can be found under the :ref:`HK Payroll <hong_kong/payroll>`.
+   If you wish to use the HK Payroll features, please install the module separately under the :ref:`HK Payroll <hong_kong/payroll>`.
 
 Add FPS QR codes to invoices
 ============================
@@ -76,45 +75,40 @@ HK Payroll
 .. image:: hong_kong/hk-payroll-module.png
    :alt: HK Payroll module
 
-.. seealso::
-   - `HK 713 Ordinance <https://www.labour.gov.hk/eng/public/wcp/ConciseGuide/Appendix1.pdf>`_
-   - `HK 418 Ordinance <https://www.workstem.com/hk/en/blog/418-regulations/>`_
-
 Create your employees
 ---------------------
 
 Go to the **Employees** app and click :guilabel:`Create`.
 
 Here are a list of supplementary fields to input before starting with HK Payroll:
-
 Under the **Work Information** tab:
 
-#. :guilabel:`Working Hours`: You need to select HK Standard 40 hours/week as this working schedule
+- :guilabel:`Working Hours`: You need to select HK Standard 40 hours/week as this working schedule
    includes weekend (used for 713 computation). 
 
 Under the **Private Information** tab:
 
-#. :guilabel:`Surname, Given Name, Name in Chinese`
-#. :guilabel:`Identification No`
-#. :guilabel:`Gender`
-#. :guilabel:`Private Address`
-#. :guilabel:`Bank Account Number`: Bank account number used to receive salary payment.
-#. :guilabel:`Current Rental`: Employee's rental records (if rental allowance is applicable)
-#. :guilabel:`Autopay Type`: E.g. BBAN, SVID, EMAL, etc
-#. :guilabel:`Autopay Reference`
+- :guilabel:`Surname, Given Name, Name in Chinese`
+- :guilabel:`Identification No`
+- :guilabel:`Gender`
+- :guilabel:`Private Address`
+- :guilabel:`Bank Account Number`: Employee's bank account number
+- :guilabel:`Current Rental`: Employee's rental records (if rental allowance is applicable)
+- :guilabel:`Autopay Type`: E.g. BBAN, SVID, EMAL, etc
+- :guilabel:`Autopay Reference`
 
 .. note::
-   For the **Bank Account Number**, remember to set the **Send Money** field to **Trusted**.
+   For the **Bank Account Number**, set the **Send Money** field to **Trusted**.
 
 .. note::
-   For the **Current Rental**, remember to set the Current Rental's **status** to **Running**.
+   For the **Current Rental**, set the Current Rental's **status** to **Running**.
 
 Under the **HR Settings** tab:
 
-#. :guilabel:`Volunteer Contribution Option`: You may select either 
+- :guilabel:`Volunteer Contribution Option`: You may select either  
    :abbr:`MC (Mandatory Contribution)`, Fixed % :abbr:`VC (Voluntary Contribution)` (set a % 
    between 1 and 5) or Cap 5% VC (max-out at 5%)
-#. :guilabel:`MPF Manulife Account`: Set account number if applicable. 
+- :guilabel:`MPF Manulife Account`: Account number if applicable. 
 
 Manage your contracts
 ---------------------
@@ -129,9 +123,8 @@ Here are several key contractual information to take note during setup:
 
 - :guilabel:`Working Schedule`: Set as HK Standard 40 hours/week (from employee record)
 - :guilabel:`Salary Structue Type`: Set as CAP57: Hong Kong Employee. 
-- :guilabel:`Work Entry Source`: You may choose between **Working Schedule**, **Attendances** or **Planning**. 
-   This field determines how the **working hours** and **days** are accounted for in 
-   the payslip.
+- :guilabel:`Work Entry Source`: You may choose between **Working Schedule**, **Attendances** or **Planning**. This field determines how the **working hours** and **days** are accounted for in the payslip.
+   
    - :guilabel:`Working Schedule`: The work entries are generated automatically based on the 
       employee's Working Schedule.
    - :guilabel:`Attendances`: The work entries will be generated based on the check-in/-out period 
@@ -140,19 +133,19 @@ Here are several key contractual information to take note during setup:
 
 Under the **Salary Information** tab: 
 
-- :guilabel:`Wage Type`: You may select **Fixed Wage** for Full-time or Part-time employees or 
-**Hourly Wage** for employees who are paid hourly (used with Attendances work entry source). 
+- :guilabel:`Wage Type`: You may select **Fixed Wage** for Full-time or Part-time employees or **Hourly Wage** for employees who are paid hourly (used with Attendances work entry source). 
 - :guilabel:`Wage`: Monthly or Hourly depending on the **Wage Type**. 
-- :guilabel:`Internet Subscription`: This is an **optional** field to provide additional internet 
-allowance on top of the current salary package.
+- :guilabel:`Internet Subscription`: This is an **optional** field to provide additional internet allowance on top of the current salary package.
 
   .. important::
      Timesheets do not impact work entries in Odoo.
 
-Once all information has been setup, remember to set the contract status to **Running**.     
+Once all information has been setup, set the contract status to **Running**.     
 
 .. image:: hong_kong/hk-contract.png
    :alt: Hong Kong employment contract
+
+.. _hong_kong/running_payslips:
 
 Running your payslips
 ---------------------
@@ -201,7 +194,7 @@ Individual payslips
 ~~~~~~~~~~~~~~~~~~~
 Go to :menuselection:`Payroll --> Payslips --> All Payslips`
 This method of payslip generation is commonly used to handle one-off payments (e.g. Payment in Lieu
- of Notice, Long Service Payment, Severance Payment).
+of Notice, Long Service Payment, Severance Payment).
 
 #. Click on :guilabel:`New`.
 #. Select an :guilabel:`Employee`; their :guilabel:`Contract` will be filled out automatically
@@ -241,8 +234,8 @@ the salary rules configured for the structure type.
 
 .. note::
    Do note there will be no MPF computation line for the first month payslip as the **employee** 
-   contribution starts on 2nd month onwards.
-   The **employer** contribution for the 2nd month will include the back-pay for the first month. 
+   contribution starts on second month.
+   The **employer** contribution for the second month will include the back-pay of the first month. 
 
 Once you are satisfied with the Payslips, click :guilabel:`Create Draft entry` to generate a draft 
 accounting journal entry found in the :guilabel:`Other Info` tab of the payslip. 
@@ -264,8 +257,8 @@ The user can choose between **two** different **payment methods**.
    :alt: Hong Kong HSBC Autopay Wizard
 
 By Attendances
-~~~~~~~~~~~~~~
-In this section, we will show you how to handle employees who are based on hourly-wage contract.
+--------------
+You may handle employees who are based on hourly-wage contract using **Payroll**.
 
 .. note::
    Make sure the employee contract is using **Attendance** as the Work Entry Source and the Wage 
@@ -273,9 +266,9 @@ In this section, we will show you how to handle employees who are based on hourl
 
 #. Go to **Attendance** app.
 #. The employee can check-in/out via the kiosk mode. 
-#. In the **Payroll** app, you can review the attendace work entries generated from 
+#. In the **Payroll** app, you can review the attendance work entries generated from 
    :menuselection:`Payroll --> Work Entries`. 
-#. Next, you can generate the payslip as per earlier steps and process payment as per usual.
+#. Next, you can generate the payslip (similar to :ref:`HK Payroll <hong_kong/running_payslips>`) and process payment.
 
 .. image:: hong_kong/hk-attendance-work-entry.png
    :alt: Hong Kong Attendance Work Entry
@@ -284,7 +277,7 @@ In this section, we will show you how to handle employees who are based on hourl
    :alt: Hong Kong Attendance Payslip
 
 Taking Time-Off
-~~~~~~~~~~~~~~~
+---------------
 The work entry types and time-off types are fully integrated between the **Time-off** and 
 **Payroll** app. There are several time-off types and work entry types specific to HK which are 
 installed automatically along with the **HK-Payroll** module. 
@@ -298,11 +291,16 @@ There are two checkboxes to take note when setting up the work entry type:
    :alt: Hong Kong Work Entry Type
 
 Understanding 713
-~~~~~~~~~~~~~~~~~
+-----------------
 Our HK Payroll module is compliant with 713 Ordinance which relates to the 
 :abbr:`ADW (Average Daily Wage)` computation to ensure fair compensation for employees. 
 
+.. seealso::
+   - `HK 713 Ordinance <https://www.labour.gov.hk/eng/public/wcp/ConciseGuide/Appendix1.pdf>`_
+   - `HK 418 Ordinance <https://www.workstem.com/hk/en/blog/418-regulations/>`_
+
 The ADW computation is as follows:
+
 .. image:: hong_kong/hk-adw.png
    :alt: Hong Kong ADW Formula
 
@@ -316,7 +314,6 @@ You may generate the following payslips (make sure payslip status is **Done**) a
 . list-table::
    :header-rows: 1
    :stub-columns: 7
-
 +----------------+------+-----------+------------+-----------+---------------+---------------+
 |     Period     | Days |    Wage   | Commission |   Total   |      ADW      |  Leave Value  |
 +----------------+------+-----------+------------+-----------+---------------+---------------+
@@ -335,8 +332,7 @@ You may generate the following payslips (make sure payslip status is **Done**) a
 
 Here is a breakdown on each month's payslip:
 
-- :guilabel:`Jan`: Generate a payslip with a monthly wage of $20200. The **ADW** is always computed 
-   on a cumulative basis of the trailing 12-months. 
+- :guilabel:`Jan`: Generate a payslip with a monthly wage of $20200. The **ADW** is always computed on a cumulative basis of the trailing 12-months. 
 - :guilabel:`Feb`: Generate a similar payslip but add an **Other Input Type** for the Commission.
 - :guilabel:`Mar`: We will apply for 1-day full-paid leave in March.
 
@@ -367,7 +363,8 @@ There are a total of **four** IRD reports available:
 - :guilabel:`IR56F`: Notification of Ceasation of Employment (remaining in HK)
 - :guilabel:`IR56G`: Notification of Ceasation of Employment (departing from HK permanently)
 
-Go to :menuselection:`Payroll --> Reporting --> IR56B/E/F/G`
+Go to :menuselection:`Payroll --> Reporting --> IR56B/E/F/G`:
+
 #. Click on :guilabel:`New`.
 #. Fill in the relevant information for the IRD report.
 #. Click on :guilabel:`Populate` and the :guilabel:`Eligible Employees` smart button will show up.
